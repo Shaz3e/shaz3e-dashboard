@@ -12,8 +12,13 @@ use App\Http\Controllers\User\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ProfileController;
+use App\Livewire\User\Auth\Register;
 
 Route::middleware('guest')->group(function () {
+
+    // // Livewire
+    // Route::get('register', Register::class)->name('register');
+
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');
 

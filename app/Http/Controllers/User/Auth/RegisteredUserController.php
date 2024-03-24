@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
@@ -17,7 +18,7 @@ class RegisteredUserController extends Controller
     /**
      * Display the registration view.
      */
-    public function create(): View
+    public function create()
     {
         return view('user.auth.register');
     }
@@ -27,24 +28,30 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'name' => 'required|max:255',
+                'email' => 'required|email|unique:' . User::class,
+                'password' => 'required|max:255',
+            ],
+            [
+                'name.required' => 'Name is required',
+                'name.max' => 'Name is too long',
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+                'email.email' => 'Invalid email',
+                'email.required' => 'Email is required',
+                'email.unique' => 'Email already exists',
 
-        event(new Registered($user));
+                'password.required' => 'Password is required',
+                'password.max' => 'Password is too long',
+            ],
+        );
 
-        Auth::login($user);
-
-        return redirect(route('dashboard', absolute: false));
+        if ($validator->fails()) {
+            return redirect()->back()->with('error', ['text' => $validator->errors()->first()])->withInput();
+        }
     }
 }
