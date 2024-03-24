@@ -18,35 +18,14 @@
             </div>
             {{-- /.row --}}
 
-            @if (session('success'))
-                <div class="row mx-5">
-                    <div class="col-12">
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            {{ session('success') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                aria-label="Close"></button>
-                        </div>
-                    </div>
-                </div>
-            @endif
-
-            @if (session('error'))
-                <div class="row mx-5">
-                    <div class="col-12">
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            {{ session('error') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                aria-label="Close"></button>
-                        </div>
-                    </div>
-                </div>
-            @endif
+            <x-alert-message />
 
             <form wire:submit="forgotPassword">
 
                 <div class="row mx-5">
                     <div class="col-12 mb-2">
-                        <input type="email" wire:model.live.debounce.150ms="email" class="form-control" placeholder="Email">
+                        <input type="email" wire:model.live.debounce.150ms="email" class="form-control"
+                            placeholder="Email">
                         @error('email')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror

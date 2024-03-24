@@ -18,29 +18,7 @@
             </div>
             {{-- /.row --}}
 
-            @if (session('success'))
-                <div class="row mx-5">
-                    <div class="col-12">
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            {{ session('success') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                aria-label="Close"></button>
-                        </div>
-                    </div>
-                </div>
-            @endif
-
-            @if (session('error'))
-                <div class="row mx-5">
-                    <div class="col-12">
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            {{ session('error') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                aria-label="Close"></button>
-                        </div>
-                    </div>
-                </div>
-            @endif
+            <x-alert-message />
 
             <form wire:submit="resetPassword">
 
@@ -52,7 +30,8 @@
                         @enderror
                     </div>
                     <div class="col-12 mb-2">
-                        <input type="password" wire:model.change="confirm_password" class="form-control" placeholder="Confirm Password">
+                        <input type="password" wire:model.change="confirm_password" class="form-control"
+                            placeholder="Confirm Password">
                         @error('confirm_password')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
