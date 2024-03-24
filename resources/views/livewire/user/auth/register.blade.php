@@ -81,3 +81,14 @@
     {{-- /.s3-authbox --}}
 </div>
 {{-- /.s3-container --}}
+
+
+@push('styles')
+@endpush
+
+
+@push('scripts')
+<script>
+    console.log('This is the register page');
+</script>
+@endpush

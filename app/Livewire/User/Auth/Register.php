@@ -4,9 +4,13 @@ namespace App\Livewire\User\Auth;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
+#[Layout('components.layouts.auth')]
+#[Title('Register')]
 class Register extends Component
 {
     #[Validate]
@@ -25,7 +29,7 @@ class Register extends Component
     {
         return [
             'name' => 'required|max:255',
-            'email' => 'required|email|unique:'.User::class,
+            'email' => 'required|email|unique:' . User::class,
             'password' => 'required',
             'confirm_password' => 'required|same:password',
         ];

@@ -4,42 +4,29 @@ use App\Http\Controllers\User\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\User\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\User\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\User\Auth\EmailVerificationPromptController;
-use App\Http\Controllers\User\Auth\NewPasswordController;
 use App\Http\Controllers\User\Auth\PasswordController;
-use App\Http\Controllers\User\Auth\PasswordResetLinkController;
-use App\Http\Controllers\User\Auth\RegisteredUserController;
 use App\Http\Controllers\User\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ProfileController;
+use App\Livewire\User\Auth\Login;
 use App\Livewire\User\Auth\Register;
+use App\Livewire\User\Auth\ForgotPassword;
+use App\Livewire\User\Auth\ResetPassword;
 
 Route::middleware('guest')->group(function () {
 
-    // // Livewire
-    // Route::get('register', Register::class)->name('register');
+    // Register
+    Route::get('register', Register::class)->name('register');
 
-    Route::get('register', [RegisteredUserController::class, 'create'])
-        ->name('register');
+    // Login
+    Route::get('login', Login::class)->name('login');
 
-    Route::post('register', [RegisteredUserController::class, 'store']);
+    // Forgot Password
+    Route::get('forgot-password', ForgotPassword::class)->name('forgot.password');
 
-    Route::get('login', [AuthenticatedSessionController::class, 'create'])
-        ->name('login');
-
-    Route::post('login', [AuthenticatedSessionController::class, 'store']);
-
-    Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
-        ->name('password.request');
-
-    Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
-        ->name('password.email');
-
-    Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
-        ->name('password.reset');
-
-    Route::post('reset-password', [NewPasswordController::class, 'store'])
-        ->name('password.store');
+    // Reset Password
+    Route::get('reset/{email}/{token}', ResetPassword::class)->name('password.reset');
 });
 
 Route::middleware('auth')->group(function () {

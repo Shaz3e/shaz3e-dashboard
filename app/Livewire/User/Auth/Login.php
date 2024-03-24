@@ -4,9 +4,13 @@ namespace App\Livewire\User\Auth;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
+#[Layout('components.layouts.auth')]
+#[Title('Login')]
 class Login extends Component
 {
     #[Validate]
@@ -19,7 +23,7 @@ class Login extends Component
     public function rules()
     {
         return [
-            'email' => 'required|email|exists:'.User::class,
+            'email' => 'required|email|exists:' . User::class,
             'password' => 'required',
         ];
     }
@@ -44,11 +48,11 @@ class Login extends Component
         ];
 
         // Login User
-        if(Auth::attempt($credentials)){
+        if (Auth::attempt($credentials)) {
             // Show success message
             session()->flash('success', 'Welcome Back!');
             return redirect()->intended('dashboard');
-        }else{
+        } else {
             session()->flash('error', 'Invalid Credentials');
         }
     }
