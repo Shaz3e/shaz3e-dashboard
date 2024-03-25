@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ $title ?? config('app.name') }} | {{ config('app.name') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -27,10 +27,10 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
 </head>
 
 <body>
-
     <!-- Begin page -->
     <div id="layout-wrapper">
         {{-- Topbar --}}
@@ -41,11 +41,10 @@
 
         {{-- Main Content --}}
         <div class="main-content">
-
             <div class="page-content">
                 <div class="container-fluid">
 
-                    @yield('content')
+                    {{ $slot }}
 
                 </div> <!-- container-fluid -->
             </div>
@@ -87,6 +86,7 @@
 
     <!-- App js -->
     @include('layouts.appjs')
+    @livewireScripts
 </body>
 
 </html>
