@@ -31,6 +31,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Logout
         Route::get('logout', Logout::class)->name('logout');
 
+        // Dashboard
         Route::get('dashboard', function () {
             return view('admin.dashboard');
         })->name('dashboard');
