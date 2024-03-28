@@ -31,6 +31,15 @@
 
 <body data-topbar="light">
 
+    <!-- Loader -->
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner">
+                <i class="ri-loader-line spin-icon"></i>
+            </div>
+        </div>
+    </div>
+
     <!-- <body data-layout="horizontal" data-topbar="dark"> -->
 
     <!-- Begin page -->
