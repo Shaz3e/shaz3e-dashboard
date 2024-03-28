@@ -17,7 +17,8 @@ class UserList extends Component
 
     public $id, $name, $email, $password;
 
-    public $showCreateModal = false;
+    // record to delete
+    public $recordToDelete;
 
     /**
      * Main Blade Render
@@ -101,7 +102,7 @@ class UserList extends Component
             $this->id = $user->id;
             $this->name = $user->name;
             $this->email = $user->email;
-            $this->password = $user->password;
+            $this->password = '';
         }
     }
 
@@ -135,5 +136,48 @@ class UserList extends Component
 
         // Dispatch browser event to close modal
         $this->dispatch('user-updated');
+    }
+
+    /**
+     * Delete Record
+     */
+    public function delete($id)
+    {
+        // get id
+        $user = User::find($id);
+
+        // Check record exists
+        if(!$user){
+            session()->flash('error', 'User not found!');
+        }else{
+            // Delete record
+            $user->delete();
+
+            // Show a success message
+            session()->flash('success', 'User deleted successfully!');
+
+            // dispatch browser event
+            $this->dispatch('user-deleted');
+
+            // refresh the records table
+            $this->render();
+        }
+    }
+
+    /**
+     * Confirm Delete
+     */
+    public function confirmDelete($id)
+    {
+        $this->recordToDelete = $id;
+        $this->dispatch('showDeleteConfirmation');
+    }
+
+    /**
+     * Cancel delete action
+     */
+    public function cancelDelete()
+    {
+        $this->dispatch('hideDeleteConfirmation');
     }
 }

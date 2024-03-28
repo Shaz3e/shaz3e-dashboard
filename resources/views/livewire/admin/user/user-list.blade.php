@@ -70,8 +70,13 @@
                                                     <div class="dropdown-menu">
                                                         <button wire:click="edit({{ $user->id }})"
                                                             class="dropdown-item" data-bs-toggle="modal"
-                                                            data-bs-target="#createModal">Edit</button>
-                                                        <button class="dropdown-item">Delete</button>
+                                                            data-bs-target="#updateModal">
+                                                            Edit
+                                                        </button>
+                                                        <button wire:click="confirmDelete({{ $user->id }})" class="dropdown-item" data-bs-toggle="modal"
+                                                            data-bs-target="#deleteModal">
+                                                            Delete
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </td>
@@ -96,6 +101,7 @@
 
     @include('livewire.admin.user.create')
     @include('livewire.admin.user.edit')
+    @include('livewire.admin.user.delete')
 </div>
 
 @push('styles')
@@ -114,7 +120,20 @@
             });
             // close mdal when user not found
             Livewire.on('user-not-found', (event) => {
+                $('#createModal').modal('hide');
                 $('#updateModal').modal('hide');
+            });
+            // close modal when user is delete
+            Livewire.on('user-deleted', (event) => {
+                $('#deleteModal').modal('hide');
+            });
+            // show confirm modal
+            Livewire.on('showDeleteConfirmation', (event) => {
+                $('#deleteModal').modal('show');
+            });
+            // show cancel deletion action modal
+            Livewire.on('hideDeleteConfirmation', (event) => {
+                $('#deleteModal').modal('hide');
             });
         });
     </script>
