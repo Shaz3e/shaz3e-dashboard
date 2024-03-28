@@ -101,6 +101,8 @@
     <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
     <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
 
+    <script src="{{ asset('assets/js/pages/materialdesign.init.js') }}"></script>
+
     @stack('scripts')
 
     <x-appjs />
