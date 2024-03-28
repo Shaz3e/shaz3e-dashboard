@@ -17,6 +17,5 @@
 @push('styles')
 @endpush
 
-@push('scripts')
-    
+@push('scripts')    
 @endpush
