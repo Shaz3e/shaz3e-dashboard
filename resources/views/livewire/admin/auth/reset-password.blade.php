@@ -41,7 +41,6 @@
                         <button type="submit" class="btn btn-primary">
                             Change Password
                         </button>
-                        <span wire:loading><i class="fas fa-spinner fa-spin"></i></span>
                     </div>
 
                     <div class="col-12 mb-">
