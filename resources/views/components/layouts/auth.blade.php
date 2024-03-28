@@ -22,7 +22,6 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @livewireStyles
 </head>
 
 <body>
@@ -36,9 +35,7 @@
 
     @stack('scripts')
 
-    @include('layouts.appjs')
-    
-    @livewireScripts
+    <x-appjs />
 </body>
 
 </html>

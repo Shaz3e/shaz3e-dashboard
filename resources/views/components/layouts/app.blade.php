@@ -27,20 +27,30 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @livewireStyles
 </head>
 
-<body>
+<body data-topbar="light">
+
+    <!-- <body data-layout="horizontal" data-topbar="dark"> -->
+
     <!-- Begin page -->
     <div id="layout-wrapper">
-        {{-- Topbar --}}
-        @include('layouts.header')
 
-        {{-- Sidebar --}}
-        @include('layouts.sidebar')
+        <!-- Check if the user is logged in as an admin -->
+        @if (auth()->guard('admin')->check())
+            <x-admin-header />
+            <x-admin-sidebar />
+            <!-- Check if the user is logged in as a regular user -->
+        @elseif (auth()->check())
+            <x-user-header />
+            <x-user-sidebar />
+        @endif
 
-        {{-- Main Content --}}
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
         <div class="main-content">
+
             <div class="page-content">
                 <div class="container-fluid">
 
@@ -71,9 +81,9 @@
         <!-- end main content-->
 
     </div>
-    {{-- /.layout-wrapper --}}
+    <!-- END layout-wrapper -->
 
-    @include('layouts.rightsidebar')
+    <x-rightsidebar />
 
     <!-- JAVASCRIPT -->
     <script src="{{ asset('assets/libs/jquery/jquery.min.js') }}"></script>
@@ -84,9 +94,8 @@
 
     @stack('scripts')
 
-    <!-- App js -->
-    @include('layouts.appjs')
-    @livewireScripts
+    <x-appjs />
+
 </body>
 
 </html>

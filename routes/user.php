@@ -7,6 +7,7 @@ use App\Livewire\User\Auth\Register;
 use App\Livewire\User\Auth\ForgotPassword;
 use App\Livewire\User\Auth\Logout;
 use App\Livewire\User\Auth\ResetPassword;
+use App\Livewire\User\UserDashboard;
 
 Route::middleware('guest')->group(function () {
 
@@ -27,7 +28,6 @@ Route::middleware('auth')->group(function () {
     // Logout
     Route::get('/logout', Logout::class)->name('logout');
 
-    Route::get('/dashboard', function () {
-        return view('user.dashboard');
-    })->name('dashboard');
+    // User Dashboard
+    Route::get('dashboard', UserDashboard::class)->name('dashboard');
 });

@@ -7,6 +7,8 @@ use App\Livewire\Admin\Auth\Login;
 use App\Livewire\Admin\Auth\ForgotPassword;
 use App\Livewire\Admin\Auth\ResetPassword;
 use App\Livewire\Admin\Auth\Logout;
+use App\Livewire\Admin\Dashboard;
+use App\Livewire\Admin\User\UserList;
 
 // if route is /admin redirect to admin/dashboard
 
@@ -32,8 +34,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('logout', Logout::class)->name('logout');
 
         // Dashboard
-        Route::get('dashboard', function () {
-            return view('admin.dashboard');
-        })->name('dashboard');
+        Route::get('dashboard', Dashboard::class)->name('dashboard');
+
+        // Users
+        Route::get('users', UserList::class)->name('users');
     });
 });
