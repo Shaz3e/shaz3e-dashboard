@@ -149,6 +149,8 @@ class UserList extends Component
         // Check record exists
         if(!$user){
             session()->flash('error', 'User not found!');
+            $this->dispatch('hideDeleteConfirmation');
+            return;
         }else{
             // Delete record
             $user->delete();
