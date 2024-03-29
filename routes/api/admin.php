@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Admin\Auth\LoginController;
 use App\Http\Controllers\Api\Admin\Auth\RegisterController;
 use App\Http\Controllers\Api\Admin\Auth\ForgotPasswordController;
+use App\Http\Controllers\Api\Admin\Auth\LogoutController;
 use App\Http\Controllers\Api\Admin\Auth\ResetPasswordController;
 
 // Users
@@ -25,6 +26,9 @@ Route::prefix('admin')->group(function () {
     Route::post('reset/{email}/{token}', [ResetPasswordController::class, 'reset']);
 
     Route::middleware('auth:sanctum')->group(function () {
+
+        // Logout
+        Route::post('logout', [LogoutController::class, 'logout']);
 
         // Users
         Route::apiResource('users', UserController::class)
