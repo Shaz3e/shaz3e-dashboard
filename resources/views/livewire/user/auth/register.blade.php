@@ -18,7 +18,9 @@
             </div>
             {{-- /.row --}}
 
-            <x-alert-message />
+            <div class="mx-5">
+                <x-alert-message />
+            </div>
 
             <form wire:submit="register">
 

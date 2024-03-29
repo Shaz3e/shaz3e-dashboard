@@ -1,5 +1,5 @@
 @if (session('primary'))
-    <div class="row mx-5">
+    <div class="row">
         <div class="col-12">
             <div class="alert alert-primary alert-dismissible fade show" role="alert">
                 {{ session('primary') }}
@@ -10,7 +10,7 @@
 @endif
 
 @if (session('secondary'))
-    <div class="row mx-5">
+    <div class="row">
         <div class="col-12">
             <div class="alert alert-secondary alert-dismissible fade show" role="alert">
                 {{ session('secondary') }}
@@ -21,7 +21,7 @@
 @endif
 
 @if (session('success'))
-    <div class="row mx-5">
+    <div class="row">
         <div class="col-12">
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('success') }}
@@ -32,7 +32,7 @@
 @endif
 
 @if (session('error'))
-    <div class="row mx-5">
+    <div class="row">
         <div class="col-12">
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 {{ session('error') }}
@@ -43,7 +43,7 @@
 @endif
 
 @if (session('warning'))
-    <div class="row mx-5">
+    <div class="row">
         <div class="col-12">
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
                 {{ session('warning') }}
@@ -54,7 +54,7 @@
 @endif
 
 @if (session('info'))
-    <div class="row mx-5">
+    <div class="row">
         <div class="col-12">
             <div class="alert alert-info alert-dismissible fade show" role="alert">
                 {{ session('info') }}
@@ -65,7 +65,7 @@
 @endif
 
 @if (session('light'))
-    <div class="row mx-5">
+    <div class="row">
         <div class="col-12">
             <div class="alert alert-light alert-dismissible fade show" role="alert">
                 {{ session('light') }}
@@ -76,7 +76,7 @@
 @endif
 
 @if (session('dark'))
-    <div class="row mx-5">
+    <div class="row">
         <div class="col-12">
             <div class="alert alert-dark alert-dismissible fade show" role="alert">
                 {{ session('dark') }}
