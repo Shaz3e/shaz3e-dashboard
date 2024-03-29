@@ -116,33 +116,5 @@
 @endpush
 
 @push('scripts')
-    <script>
-        document.addEventListener('livewire:init', () => {
-            // close modal when user created
-            Livewire.on('user-created', (event) => {
-                $('#createModal').modal('hide');
-            });
-            // close modal when user updated
-            Livewire.on('user-updated', (event) => {
-                $('#updateModal').modal('hide');
-            });
-            // close mdal when user not found
-            Livewire.on('user-not-found', (event) => {
-                $('#createModal').modal('hide');
-                $('#updateModal').modal('hide');
-            });
-            // close modal when user is delete
-            Livewire.on('user-deleted', (event) => {
-                $('#deleteModal').modal('hide');
-            });
-            // show confirm modal
-            Livewire.on('showDeleteConfirmation', (event) => {
-                $('#deleteModal').modal('show');
-            });
-            // show cancel deletion action modal
-            Livewire.on('hideDeleteConfirmation', (event) => {
-                $('#deleteModal').modal('hide');
-            });
-        });
-    </script>
+
 @endpush

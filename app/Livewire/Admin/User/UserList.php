@@ -94,7 +94,7 @@ class UserList extends Component
         session()->flash('success', 'User created successfully!');
 
         // Dipatch browser event
-        $this->dispatch('user-created');
+        $this->dispatch('created');
     }
 
     /**
@@ -107,7 +107,7 @@ class UserList extends Component
         if (!$user) {
             session()->flash('error', 'User not found!');
             // Dispatch browser event to close modal
-            $this->dispatch('user-not-found');
+            $this->dispatch('not-found');
         } else {
             $this->id = $user->id;
             $this->name = $user->name;
@@ -145,7 +145,7 @@ class UserList extends Component
         session()->flash('success', 'User updated successfully!');
 
         // Dispatch browser event to close modal
-        $this->dispatch('user-updated');
+        $this->dispatch('updated');
     }
 
     /**
@@ -169,7 +169,7 @@ class UserList extends Component
             session()->flash('success', 'User deleted successfully!');
 
             // dispatch browser event
-            $this->dispatch('user-deleted');
+            $this->dispatch('deleted');
 
             // refresh the records table
             $this->render();
