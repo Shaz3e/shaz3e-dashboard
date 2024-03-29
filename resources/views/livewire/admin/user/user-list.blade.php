@@ -44,7 +44,7 @@
                 <div class="card-body">
                     <div class="table-rep-plugin">
                         <div class="table-responsive mb-0">
-                            <table id="tech-companies-1" class="table">
+                            <table id="data" class="table table-striped table-hover">
                                 <thead>
                                     <tr>
                                         <th>#</th>
