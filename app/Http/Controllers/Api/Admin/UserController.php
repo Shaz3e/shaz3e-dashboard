@@ -15,21 +15,25 @@ class UserController extends Controller
      */
     public function index()
     {
-        try {
-            $users = UserResource::collection(User::paginate(10));
+        $users = UserResource::collection(User::paginate(10));
 
-            return response()->json([
-                'status' => true,
-                'message' => 'Users retrieved successfully',
-                'data' => $users
-            ], 200);
-        } catch (Exception $e) {
+        // When users collection not found
+        if(!$users){
             return response()->json([
                 'status' => false,
-                'message' => 'Something went wrong',
-                'errors' => $e->getMessage()
-            ], 500);
+                'message' => 'Users not found'
+            ], 404);
         }
+        
+        // When User collection is empty
+        if($users->isEmpty()){
+            return response()->json([
+                'status' => true,
+                'message' => 'There is no records available'
+            ]);
+        }
+
+        return $users;
     }
 
     /**
