@@ -1,12 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+// Authentication Routes
 use App\Http\Controllers\Api\Admin\Auth\LoginController;
 use App\Http\Controllers\Api\Admin\Auth\RegisterController;
 use App\Http\Controllers\Api\Admin\Auth\ForgotPasswordController;
 use App\Http\Controllers\Api\Admin\Auth\ResetPasswordController;
 
-Route::prefix('admin')->group( function() {
+// Users
+use App\Http\Controllers\Api\Admin\UserController;
+
+Route::prefix('admin')->group(function () {
 
     // Register
     Route::post('register', [RegisterController::class, 'register']);
@@ -20,7 +24,10 @@ Route::prefix('admin')->group( function() {
     // Reset Password
     Route::post('reset/{email}/{token}', [ResetPasswordController::class, 'reset']);
 
-    Route::middleware('auth:sanctum')->group( function() {
-        // Route::get('users');
+    Route::middleware('auth:sanctum')->group(function () {
+
+        // Users
+        Route::apiResource('users', UserController::class)
+            ->only(['index', 'store', 'update', 'destroy']);
     });
 });
