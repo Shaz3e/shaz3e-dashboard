@@ -20,7 +20,15 @@
     <div class="row">
         <div class="col-12">
             <div class="row d-flex align-items-center mb-2">
-                <div class="col-md-3 col-sm-12">
+                <div class="col-md-1 col-sm-1">
+                    <select wire:model.live="perPage" class="form-select form-select-sm">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                </div>
+                <div class="col-md-9 col-sm-12">
                     <form class="app-search">
                         <div class="position-relative">
                             <input type="search" wire:model.live="search" class="form-control form-control-sm"
@@ -29,8 +37,8 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-md-9 col-sm-12">
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <div class="col-md-2 col-sm-12">
+                    <div class="d-grid">
                         <button wire:click="create" type="button"
                             class="btn btn-success btn-sm waves-effect waves-light" data-bs-toggle="modal"
                             data-bs-target="#createModal">Create</button>
@@ -60,7 +68,6 @@
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
                                             <td>
-
                                                 <div class="dropdown mt-4 mt-sm-0">
                                                     <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown"
                                                         aria-expanded="false">
@@ -73,7 +80,8 @@
                                                             data-bs-target="#updateModal">
                                                             Edit
                                                         </button>
-                                                        <button wire:click="confirmDelete({{ $user->id }})" class="dropdown-item" data-bs-toggle="modal"
+                                                        <button wire:click="confirmDelete({{ $user->id }})"
+                                                            class="dropdown-item" data-bs-toggle="modal"
                                                             data-bs-target="#deleteModal">
                                                             Delete
                                                         </button>

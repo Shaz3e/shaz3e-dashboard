@@ -15,6 +15,8 @@ class UserList extends Component
     #[Url()]
     public $search = '';
 
+    public $perPage = 10;
+
     public $id, $name, $email, $password;
 
     // record to delete
@@ -39,7 +41,7 @@ class UserList extends Component
             });
         }
 
-        $users = $query->orderBy('id', 'desc')->paginate(10);
+        $users = $query->orderBy('id', 'desc')->paginate($this->perPage);
 
         return view('livewire.admin.user.user-list', [
             'users' => $users
@@ -50,6 +52,14 @@ class UserList extends Component
      * Reset Search
      */
     public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
+    /**
+     * Update perPage records
+     */
+    public function updatedPerPage()
     {
         $this->resetPage();
     }
