@@ -12,7 +12,7 @@ class LogoutController extends Controller
     {
         try {
             // Revoke the user's token
-            Auth::user()->tokens()->delete();
+            Auth::guard('admin')->user()->tokens()->delete();
 
             return response()->json([
                 'status' => true,
