@@ -31,7 +31,6 @@ Route::prefix('admin')->group(function () {
         Route::post('logout', [LogoutController::class, 'logout']);
 
         // Users
-        Route::apiResource('users', UserController::class)
-            ->only(['index', 'store', 'update', 'destroy']);
+        Route::apiResource('users', UserController::class);
     });
 });
