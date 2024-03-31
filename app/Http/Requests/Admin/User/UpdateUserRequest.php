@@ -28,7 +28,6 @@ class UpdateUserRequest extends BaseFormRequest
             'password' => [
                 'min:8',
                 'max:255',
-                'confirmed'
             ],
         ];
 
