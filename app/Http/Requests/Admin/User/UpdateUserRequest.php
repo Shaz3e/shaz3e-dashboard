@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Requests\Admin;
+namespace App\Http\Requests\Admin\User;
 
 use App\Http\Requests\BaseFormRequest;
 use App\Models\User;
 use Illuminate\Validation\Rule;
 
-class UserRequest extends BaseFormRequest
+class UpdateUserRequest extends BaseFormRequest
 {
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -33,18 +32,18 @@ class UserRequest extends BaseFormRequest
             ],
         ];
 
-        if($this->has('name')){
+        if ($this->has('name')) {
             $rules['name'][] = 'required';
         }
 
-        if($this->has('email')){
+        if ($this->has('email')) {
             $rules['email'][] = 'required';
         }
 
-        if($this->has('password')){
+        if ($this->has('password')) {
             $rules['password'][] = 'required';
         }
-        
+
         return $rules;
     }
 }
