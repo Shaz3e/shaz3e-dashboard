@@ -25,7 +25,7 @@ Route::prefix('admin')->group(function () {
     // Reset Password
     Route::post('reset/{email}/{token}', [ResetPasswordController::class, 'reset']);
 
-    Route::middleware('auth:sanctum')->group(function () {
+    Route::middleware(['auth:sanctum', 'auth.admin'])->group(function () {
 
         // Logout
         Route::post('logout', [LogoutController::class, 'logout']);
