@@ -11,8 +11,11 @@ class LogoutController extends Controller
     public function logout()
     {
         try {
-            // Revoke the user's token
-            Auth::user()->tokens()->delete();
+            // Get Logged in user
+            $user = Auth::user();
+
+            // delete all tokens, essentially logging the user out
+            $user->tokens()->delete();
 
             return response()->json([
                 'status' => true,
